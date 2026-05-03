@@ -1,0 +1,149 @@
+# User Management UI Specification
+
+## 1. Overview
+
+This document describes the User Management screen UI, its components, behaviors, and requirements. It is intended for developers implementing the interface.
+
+---
+
+## 2. Page Layout
+
+The page is divided into two main sections:
+
+1. **Left Panel (User List)**
+2. **Right Panel (User Form)**
+
+Top bar includes global actions.
+
+---
+
+## 3. Initial State
+
+When the page loads:
+
+* User list is displayed with existing users
+* First user is selected by default
+* User details are shown in the right panel
+* "Hide Disabled User" checkbox is checked by default
+
+---
+
+## 4. UI Components
+
+### 4.1 Top Bar
+
+| Component          | Type     | Description                                    |
+| ------------------ | -------- | ---------------------------------------------- |
+| + New User         | Button   | Clears form and prepares for new user creation |
+| Hide Disabled User | Checkbox | Filters out disabled users from list           |
+| Save User          | Button   | Saves new or updated user                      |
+
+---
+
+### 4.2 User List (Left Panel)
+
+#### Columns:
+
+* ID
+* User Name
+* Email
+* Enabled (true/false)
+
+#### Features:
+
+* Row selection
+* Sorting (ascending/descending)
+* Filtering (via column filters)
+
+#### Behavior:
+
+* Clicking a row loads user data into the form
+* Selected row is highlighted
+
+---
+
+### 4.3 User Form (Right Panel)
+
+#### Fields:
+
+| Field        | Type                    | Required | Description     |
+| ------------ | ----------------------- | -------- | --------------- |
+| Username     | Textbox                 | Yes      | Unique username |
+| Display Name | Textbox                 | Yes      | Full name       |
+| Phone        | Textbox                 | No       | Phone number    |
+| Email        | Textbox                 | Yes      | Valid email     |
+| User Roles   | Dropdown (Multi-select) | Yes      | Role selection  |
+| Enabled      | Checkbox                | No       | Active status   |
+
+#### Roles Options:
+
+* Guest
+* Admin
+* SuperAdmin
+
+---
+
+## 5. Functional Requirements
+
+### 5.1 Create User
+
+* Click "New User"
+* Form is cleared
+* User enters data
+* Click "Save User"
+* New user appears in list
+
+### 5.2 Update User
+
+* Select user from list
+* Modify fields
+* Click "Save User"
+* Changes are reflected in list
+
+### 5.3 Filter Disabled Users
+
+* If checkbox is checked → disabled users hidden
+* If unchecked → all users shown
+
+---
+
+## 6. Validation Rules
+
+* Username: required, unique
+* Display Name: required
+* Email: required, valid format
+* At least one role must be selected
+
+Error messages should be shown near fields.
+
+---
+
+## 7. Interaction Behavior
+
+* Save button disabled if validation fails
+* Selecting a new user while editing prompts confirmation (optional)
+* Dropdown supports multi-selection
+
+---
+
+## 8. Non-Functional Requirements
+
+* Responsive layout
+* Fast filtering and sorting
+* Accessible (keyboard navigation supported)
+
+---
+
+## 9. Future Enhancements (Optional)
+
+* Search bar
+* Pagination
+* Delete user feature
+* Role management
+
+---
+
+## 10. Notes
+
+* Backend API endpoints should support CRUD operations
+* UI should handle API errors gracefully
