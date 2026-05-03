@@ -14,6 +14,7 @@ class Program
             }
         }
     }
+    
     static bool IsPrime(int number)
     {
         if (number < 2)
